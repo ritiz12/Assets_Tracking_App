@@ -1,15 +1,14 @@
-package com.example.A.ets_Tracking_App.assetsTracking.core;
+package com.example.A.Assets_Tracking_App.assetsTracking.core;
 import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.Date;
-import com.example.A.ets_Tracking_App.assetsTracking.data.*;
-import com.example.A.ets_Tracking_App.assetsTracking.domain.Asset;
-import com.example.A.ets_Tracking_App.assetsTracking.persistence.AssetTrackingRepository;
+import com.example.A.Assets_Tracking_App.assetsTracking.data.*;
+import com.example.A.Assets_Tracking_App.assetsTracking.domain.Asset;
+import com.example.A.Assets_Tracking_App.assetsTracking.persistence.AssetTrackingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Service
 public class AssetTrackingService {
@@ -39,7 +38,8 @@ public class AssetTrackingService {
                     .orElseThrow(() -> new RuntimeException("Asset with ID " + assetId + " not found"));
             if (foundAsset != null) {
                 BigDecimal currentDepreciatedValue = calculateDepreciatedValue(foundAsset);
-                foundAsset.setDepreciatedValue(currentDepreciatedValue);
+               foundAsset.setDepreciatedValue(currentDepreciatedValue);
+               assetTrackingRepository.save(foundAsset);
 
                 response.addAssetDetailsRecod(new GetAssetDetailsSummary(foundAsset.getTitle(), foundAsset.getPurchaseDate(), foundAsset.getCost(), foundAsset.getDepreciationRate(), foundAsset.getDepreciatedValue()));
             } else {
@@ -60,7 +60,6 @@ public class AssetTrackingService {
                 (calendar1.get(Calendar.MONTH) + 1) * 100 +
                 calendar1.get(Calendar.DAY_OF_MONTH);
 
-
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTime(purchaseDate);
 
@@ -75,4 +74,16 @@ public class AssetTrackingService {
     }
 
 
+    public GetAssetSummaryResponse GetAssetSummary(final GetAssetSummaryRequest request) {
+        final var response = new GetAssetSummaryResponse();
+        long currentAssetCount = assetTrackingRepository.count();
+        long currentcost = assetTrackingRepository.costOfTotalAsset();
+        long currentdepreciatedTotalValue = assetTrackingRepository.depreciatedCostOfTotalAsset();
+        response.setCurrentAssetCount(currentAssetCount);
+        response.setCurrentCost(currentcost);
+        response.setCurrentDepreciatedCurrentValue(currentdepreciatedTotalValue);
+        return response ;
+
+
+    }
 }

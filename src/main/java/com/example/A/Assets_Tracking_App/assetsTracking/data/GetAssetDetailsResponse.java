@@ -1,4 +1,4 @@
-package com.example.A.ets_Tracking_App.assetsTracking.data;
+package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
 import java.util.ArrayList;
 import java.util.Collection;

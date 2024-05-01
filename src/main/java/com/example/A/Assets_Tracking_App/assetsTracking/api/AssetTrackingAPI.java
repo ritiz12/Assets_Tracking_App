@@ -1,11 +1,8 @@
-package com.example.A.ets_Tracking_App.assetsTracking.api;
+package com.example.A.Assets_Tracking_App.assetsTracking.api;
 
 
-import com.example.A.ets_Tracking_App.assetsTracking.core.AssetTrackingService;
-import com.example.A.ets_Tracking_App.assetsTracking.data.GetAssetDetailsRequest;
-import com.example.A.ets_Tracking_App.assetsTracking.data.GetAssetDetailsResponse;
-import com.example.A.ets_Tracking_App.assetsTracking.data.SaveAssetDataRequest;
-import com.example.A.ets_Tracking_App.assetsTracking.data.SaveAssetDataResponse;
+import com.example.A.Assets_Tracking_App.assetsTracking.core.AssetTrackingService;
+import com.example.A.Assets_Tracking_App.assetsTracking.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +27,14 @@ public class AssetTrackingAPI {
         return  ResponseEntity.ok(response);
 
     }
+
+    @GetMapping("/summary")
+    public  ResponseEntity<GetAssetSummaryResponse> GetAssetSummary(GetAssetSummaryRequest request)
+    {
+        final var reponse = assetTrackingService.GetAssetSummary(request);
+        return ResponseEntity.ok(reponse);
+    }
+
 
 
 

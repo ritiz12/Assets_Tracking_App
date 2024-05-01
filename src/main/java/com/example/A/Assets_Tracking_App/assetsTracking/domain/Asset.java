@@ -1,16 +1,14 @@
-package com.example.A.ets_Tracking_App.assetsTracking.domain;
+package com.example.A.Assets_Tracking_App.assetsTracking.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.aspectj.bridge.IMessage;
 
-import javax.crypto.Mac;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "asset")
+@Table(name = "Asset")
 public class Asset {
 
     @Id

@@ -1,18 +1,16 @@
-package com.example.A.ets_Tracking_App.assetsTracking.data;
+package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class SaveAssetDataRequest {
+public class GetAssetDetailsRequest {
+    final String title ;
+    final BigDecimal cost ;
+    final Date purchaseDate ;
 
-    final private String  title ;
-    final private BigDecimal cost ;
+    final BigDecimal depreciationRate ;
 
-    final private Date purchaseDate ;
-
-    final private BigDecimal depreciationRate ;
-
-    public SaveAssetDataRequest(String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate) {
+    public GetAssetDetailsRequest(String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate) {
         this.title = title;
         this.cost = cost;
         this.purchaseDate = purchaseDate;

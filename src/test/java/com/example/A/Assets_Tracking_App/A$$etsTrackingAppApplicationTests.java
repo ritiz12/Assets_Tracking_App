@@ -1,4 +1,4 @@
-package com.example.A.ets_Tracking_App;
+package com.example.A.Assets_Tracking_App;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.example.A.ets_Tracking_App;
+package com.example.A.Assets_Tracking_App;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

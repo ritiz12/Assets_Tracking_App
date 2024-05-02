@@ -1,9 +1,12 @@
 package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
+import com.example.A.Assets_Tracking_App.assetsTracking.common.PaginatedRequest;
+import com.example.A.Assets_Tracking_App.assetsTracking.common.Request;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class GetAssetDetailsRequest {
+public class GetAssetDetailsRequest  extends PaginatedRequest {
     final String title ;
     final BigDecimal cost ;
     final Date purchaseDate ;

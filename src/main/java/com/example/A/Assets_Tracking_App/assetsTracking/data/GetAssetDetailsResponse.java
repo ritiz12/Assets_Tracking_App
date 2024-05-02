@@ -1,22 +1,24 @@
 package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
+import com.example.A.Assets_Tracking_App.assetsTracking.common.PaginatedResponse;
+import com.example.A.Assets_Tracking_App.assetsTracking.common.Response;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.domain.Page;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class GetAssetDetailsResponse {
- private  Collection<GetAssetDetailsSummary> assetDetailsRecord ;
+public class GetAssetDetailsResponse  extends PaginatedResponse {
+ private  final Page<GetAssetDetailsSummary> page;
 
- public void addAssetDetailsRecod(final GetAssetDetailsSummary data)
+ public  GetAssetDetailsResponse(Page<GetAssetDetailsSummary> page)
  {
-     if(assetDetailsRecord == null)
-     {
-         assetDetailsRecord = new ArrayList<>();
-     }
-     assetDetailsRecord.add(data);
-
+     this.page = page ;
  }
 
-    public Collection<GetAssetDetailsSummary> getAssetDetailsRecord() {
-        return assetDetailsRecord;
+    @JsonProperty
+    public Page<GetAssetDetailsSummary> getPage()
+    {
+        return page ;
     }
 }

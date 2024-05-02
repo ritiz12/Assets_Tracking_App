@@ -1,14 +1,21 @@
 package com.example.A.Assets_Tracking_App.assetsTracking.core;
+import org.springframework.data.domain.*;
+
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import com.example.A.Assets_Tracking_App.assetsTracking.data.*;
 import com.example.A.Assets_Tracking_App.assetsTracking.domain.Asset;
 import com.example.A.Assets_Tracking_App.assetsTracking.persistence.AssetTrackingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class AssetTrackingService {
@@ -31,23 +38,25 @@ public class AssetTrackingService {
     }
 
     public GetAssetDetailsResponse GetAssetDetails(GetAssetDetailsRequest request) {
-        final var response = new GetAssetDetailsResponse();
-        for (Asset asset : assetTrackingRepository.findAll()) {
+       // final var response = new GetAssetDetailsResponse();
+        Pageable pageable = PageRequest.of(0 , 100);
+        Page<Asset> assetsPage = assetTrackingRepository.findAll(pageable);
+        List<GetAssetDetailsSummary> assetDetailsSummaries = new ArrayList<>();
+        for (Asset asset : assetsPage.getContent()) {
             int assetId = asset.getId();
             Asset foundAsset = assetTrackingRepository.findById(String.valueOf(assetId))
                     .orElseThrow(() -> new RuntimeException("Asset with ID " + assetId + " not found"));
-            if (foundAsset != null) {
+
                 BigDecimal currentDepreciatedValue = calculateDepreciatedValue(foundAsset);
-               foundAsset.setDepreciatedValue(currentDepreciatedValue);
-               assetTrackingRepository.save(foundAsset);
+                foundAsset.setDepreciatedValue(currentDepreciatedValue);
+                assetTrackingRepository.save(foundAsset);
 
-                response.addAssetDetailsRecod(new GetAssetDetailsSummary(foundAsset.getTitle(), foundAsset.getPurchaseDate(), foundAsset.getCost(), foundAsset.getDepreciationRate(), foundAsset.getDepreciatedValue()));
-            } else {
-
-                System.out.println("Asset with ID " + assetId + " not found.");
+            assetDetailsSummaries.add(new GetAssetDetailsSummary(foundAsset.getTitle(), foundAsset.getPurchaseDate(), foundAsset.getCost(), foundAsset.getDepreciationRate(), foundAsset.getDepreciatedValue()));
             }
-        }
-        return response;
+        final long totalCount = assetTrackingRepository.count();
+        Page<GetAssetDetailsSummary> page = new PageImpl<>(assetDetailsSummaries , pageable , totalCount);
+
+        return new GetAssetDetailsResponse(page);
     }
 
 

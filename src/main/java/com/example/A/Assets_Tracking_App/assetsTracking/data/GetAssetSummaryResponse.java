@@ -1,9 +1,11 @@
 package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
+import java.math.BigDecimal;
+
 public class GetAssetSummaryResponse {
     private long currentAssetCount;
     private long currentCost;
-    private long currentDepreciatedCurrentValue;
+    private BigDecimal currentDepreciatedCurrentValue;
 
     // Constructor
     public GetAssetSummaryResponse() {
@@ -28,11 +30,11 @@ public class GetAssetSummaryResponse {
     }
 
     // Getter and Setter for currentDepreciatedCurrentValue
-    public long getCurrentDepreciatedCurrentValue() {
+    public BigDecimal getCurrentDepreciatedCurrentValue() {
         return currentDepreciatedCurrentValue;
     }
 
-    public void setCurrentDepreciatedCurrentValue(long currentDepreciatedCurrentValue) {
+    public void setCurrentDepreciatedCurrentValue(BigDecimal currentDepreciatedCurrentValue) {
         this.currentDepreciatedCurrentValue = currentDepreciatedCurrentValue;
     }
 

@@ -29,7 +29,8 @@ public class Asset {
     @Column(name = "cost" , nullable = false , updatable = false)
     private BigDecimal cost ;
 
-
+     @Column(name = "currency" , nullable = false , updatable = false)
+     private String currency ;
     @Column(name = "purchaseDate" , nullable = false , updatable = false)
     private Date purchaseDate;
 
@@ -38,21 +39,20 @@ public class Asset {
     @Column(name = "depreciationRate" , nullable = false , updatable = false)
     private BigDecimal depreciationRate ;
 
-    @Column(name = "depreciatedValue" , nullable = true , updatable = true)
-    private BigDecimal depreciatedValue ;
+
 
     public Asset()
     {
         super();
     }
 
-    public Asset(Integer id, String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate , BigDecimal depreciatedValue) {
-        this.id = id;
+    public Asset(Integer id, String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate , String currency) {
+        this.id=id;
         this.title = title;
         this.cost = cost;
         this.purchaseDate = purchaseDate;
         this.depreciationRate = depreciationRate;
-        this.depreciatedValue = depreciatedValue ;
+        this.currency = currency ;
     }
 
     public Integer getId() {
@@ -95,11 +95,11 @@ public class Asset {
         this.depreciationRate = depreciationRate;
     }
 
-    public BigDecimal getDepreciatedValue() {
-        return depreciatedValue;
+    public String getCurrency() {
+        return currency;
     }
 
-    public void setDepreciatedValue(BigDecimal depreciatedValue) {
-        this.depreciatedValue = depreciatedValue;
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }

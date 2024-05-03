@@ -11,11 +11,13 @@ public class SaveAssetDataSummary {
 
     final private BigDecimal depreciationRate ;
 
-    public SaveAssetDataSummary(String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate) {
+    final private String currency ;
+    public SaveAssetDataSummary(String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate , String currency) {
         this.title = title;
         this.cost = cost;
         this.purchaseDate = purchaseDate;
         this.depreciationRate = depreciationRate;
+        this.currency = currency ;
     }
 
     public String getTitle() {
@@ -32,5 +34,9 @@ public class SaveAssetDataSummary {
 
     public BigDecimal getDepreciationRate() {
         return depreciationRate;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 }

@@ -7,17 +7,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
-public interface AssetTrackingRepository extends JpaRepository<Asset , String> {
+public interface AssetTrackingRepository extends JpaRepository<Asset , Integer> {
 
     Page<Asset> findAll(Pageable pageable);
 
 
-    @Query(value = "SELECT SUM(cost) FROM Asset")
+    /*@Query(value = "SELECT SUM(cost) FROM Asset")
     long costOfTotalAsset();
 
+     */
+    @Query(value = "SELECT SUM(CASE WHEN currency = 'INR' THEN cost ELSE cost * :exchangeRate END) FROM Asset")
+    long costOfTotalAsset(BigDecimal exchangeRate);
 
-
-    @Query(value = "SELECT SUM(depreciatedValue) FROM Asset")
-    long depreciatedCostOfTotalAsset();
 }

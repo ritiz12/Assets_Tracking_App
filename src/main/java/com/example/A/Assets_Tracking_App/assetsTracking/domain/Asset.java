@@ -25,10 +25,11 @@ public class Asset {
 
 
     @NotNull(message = "Please Enter the Cost , it can not be null")
-
     @Column(name = "cost" , nullable = false , updatable = false)
     private BigDecimal cost ;
 
+    @NotNull(message = "Please Select the currency  , it can not be null")
+    @NotBlank(message = "Currency field can not be Blank , please Enter valid value")
      @Column(name = "currency" , nullable = false , updatable = false)
      private String currency ;
     @Column(name = "purchaseDate" , nullable = false , updatable = false)
@@ -43,7 +44,7 @@ public class Asset {
 
     public Asset()
     {
-        super();
+
     }
 
     public Asset(Integer id, String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate , String currency) {

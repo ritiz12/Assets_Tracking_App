@@ -12,12 +12,15 @@ public class GetAssetDetailsSummary {
 
    private  BigDecimal depreciationValue ;
 
-    public GetAssetDetailsSummary(String title, Date purchaseTime, BigDecimal cost, BigDecimal depreciationRate, BigDecimal depreciationValue) {
+   private String currency ;
+
+    public GetAssetDetailsSummary(String title, Date purchaseTime, BigDecimal cost, BigDecimal depreciationRate, BigDecimal depreciationValue , String currency) {
         this.title = title;
         this.purchaseTime = purchaseTime;
         this.cost = cost;
         this.depreciationRate = depreciationRate;
         this.depreciationValue = depreciationValue;
+        this.currency = currency;
     }
 
     public String getTitle() {
@@ -42,5 +45,9 @@ public class GetAssetDetailsSummary {
 
     public void setDepreciationValue(BigDecimal depreciationValue) {
         this.depreciationValue = depreciationValue;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 }

@@ -41,4 +41,7 @@ public class SaveAssetDataRequest {
     public String getCurrency() {
         return currency;
     }
+
+
+
 }

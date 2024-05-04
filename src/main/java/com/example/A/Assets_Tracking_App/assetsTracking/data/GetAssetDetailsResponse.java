@@ -1,24 +1,32 @@
 package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
 import com.example.A.Assets_Tracking_App.assetsTracking.common.PaginatedResponse;
-import com.example.A.Assets_Tracking_App.assetsTracking.common.Response;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.domain.Page;
 
-import java.util.ArrayList;
-import java.util.Collection;
+/**
+ * Response object containing details of assets.
+ * Extends PaginatedResponse to support pagination.
+ */
+public class GetAssetDetailsResponse extends PaginatedResponse {
 
-public class GetAssetDetailsResponse  extends PaginatedResponse {
- private  final Page<GetAssetDetailsSummary> page;
+    // Page containing asset details summaries
+    private final Page<GetAssetDetailsSummary> page;
 
- public  GetAssetDetailsResponse(Page<GetAssetDetailsSummary> page)
- {
-     this.page = page ;
- }
+    /**
+     * Constructs a new GetAssetDetailsResponse object.
+     *
+     * @param page The page containing asset details summaries.
+     */
+    public GetAssetDetailsResponse(Page<GetAssetDetailsSummary> page) {
+        this.page = page;
+    }
 
-    @JsonProperty
-    public Page<GetAssetDetailsSummary> getPage()
-    {
-        return page ;
+    /**
+     * Retrieves the page containing asset details summaries.
+     *
+     * @return The page containing asset details summaries.
+     */
+    public Page<GetAssetDetailsSummary> getPage() {
+        return page;
     }
 }

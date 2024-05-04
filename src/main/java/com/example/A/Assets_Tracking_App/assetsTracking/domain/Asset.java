@@ -7,62 +7,66 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Represents an asset in the application domain.
+ */
 @Entity
 @Table(name = "Asset")
 public class Asset {
 
+    // Cost of the asset
+    @NotNull(message = "Please Enter the Cost, it cannot be null")
+    @Column(name = "cost", nullable = false, updatable = false)
+    private BigDecimal cost;
+
+    // Currency of the asset
+    @NotNull(message = "Please Select the currency, it cannot be null")
+    @NotBlank(message = "Currency field cannot be Blank, please enter a valid value")
+    @Column(name = "currency", nullable = false, updatable = false)
+    private String currency;
+
+    // Depreciation rate of the asset
+    @NotNull(message = "Please Enter the Depreciation Rate, it cannot be null")
+    @Column(name = "depreciationRate", nullable = false, updatable = false)
+    private BigDecimal depreciationRate;
+
+    // Unique identifier for the asset
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id" , nullable = false)
-    private Integer id ;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-
-
-    @NotNull(message = "Please Enter the Title , it can not be null")
-    @NotBlank(message = "Title field can not be Blank , please Enter valid value")
-    @Column(name = "title" , nullable = false , updatable = false)
-    private String title ;
-
-
-    @NotNull(message = "Please Enter the Cost , it can not be null")
-    @Column(name = "cost" , nullable = false , updatable = false)
-    private BigDecimal cost ;
-
-    @NotNull(message = "Please Select the currency  , it can not be null")
-    @NotBlank(message = "Currency field can not be Blank , please Enter valid value")
-     @Column(name = "currency" , nullable = false , updatable = false)
-     private String currency ;
-    @Column(name = "purchaseDate" , nullable = false , updatable = false)
+    // Purchase date of the asset
+    @Column(name = "purchaseDate", nullable = false, updatable = false)
     private Date purchaseDate;
 
+    // Title of the asset
+    @NotNull(message = "Please Enter the Title, it cannot be null")
+    @NotBlank(message = "Title field cannot be Blank, please enter a valid value")
+    @Column(name = "title", nullable = false, updatable = false)
+    private String title;
 
-    @NotNull(message = "Please Enter the Depreciation Rate , it can not be null")
-    @Column(name = "depreciationRate" , nullable = false , updatable = false)
-    private BigDecimal depreciationRate ;
-
-
-
-    public Asset()
-    {
-
+    // Default constructor, needed for JPA
+    private Asset() {
+        super();
     }
 
-    public Asset(Integer id, String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate , String currency) {
-        this.id=id;
+    // Constructor for creating a new asset
+    public Asset(final Integer id,
+                 final String title,
+                 final BigDecimal cost,
+                 final Date purchaseDate,
+                 final BigDecimal depreciationRate,
+                 final String currency) {
+        this.id = id;
         this.title = title;
         this.cost = cost;
         this.purchaseDate = purchaseDate;
         this.depreciationRate = depreciationRate;
-        this.currency = currency ;
+        this.currency = currency;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    // Getter and setter methods for the properties
 
     public String getTitle() {
         return title;

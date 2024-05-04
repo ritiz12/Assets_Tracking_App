@@ -38,17 +38,23 @@ public class AssetTrackingService {
         if (request.getTitle() == null || request.getCurrency() == null || request.getCost() == null || request.getPurchaseDate() == null || request.getDepreciationRate() == null) {
             throw new IllegalArgumentException("Please Enter Complete Details");
         }
-        Asset asset = new Asset();
-        asset.setTitle(request.getTitle());
-        asset.setCurrency(request.getCurrency());
-        asset.setCost(request.getCost());
+        Asset asset = new Asset(
+                null,
+                request.getTitle(),
+                request.getCost(),
+                request.getPurchaseDate(),
+                request.getDepreciationRate(),
+                request.getCurrency()
+        );
 
-        asset.setPurchaseDate(request.getPurchaseDate());
-        asset.setDepreciationRate(request.getDepreciationRate());
         asset = assetTrackingRepository.save(asset);
 
         final var response = new SaveAssetDataResponse();
-        response.addAssetRecord(new SaveAssetDataSummary(asset.getTitle(), asset.getCost(), asset.getPurchaseDate(), asset.getDepreciationRate(), asset.getCurrency()));
+        response.addAssetRecord(new SaveAssetDataSummary(asset.getTitle()
+                , asset.getCost()
+                , asset.getPurchaseDate()
+                , asset.getDepreciationRate()
+                , asset.getCurrency()));
         return response;
     }
 

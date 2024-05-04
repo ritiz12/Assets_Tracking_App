@@ -1,37 +1,78 @@
 package com.example.A.Assets_Tracking_App.assetsTracking.data;
 
 import com.example.A.Assets_Tracking_App.assetsTracking.common.PaginatedRequest;
-import com.example.A.Assets_Tracking_App.assetsTracking.common.Request;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class GetAssetDetailsRequest  extends PaginatedRequest {
-    final String title ;
-    final BigDecimal cost ;
-    final Date purchaseDate ;
+/**
+ * A request object used to fetch details of an asset.
+ * Extends PaginatedRequest to support pagination.
+ */
+public class GetAssetDetailsRequest extends PaginatedRequest {
 
-    final BigDecimal depreciationRate ;
+    // Title of the asset
+    final String title;
 
-    public GetAssetDetailsRequest(String title, BigDecimal cost, Date purchaseDate, BigDecimal depreciationRate) {
+    // Cost of the asset
+    final BigDecimal cost;
+
+    // Purchase date of the asset
+    final Date purchaseDate;
+
+    // Depreciation rate of the asset
+    final BigDecimal depreciationRate;
+
+    /**
+     * Constructs a new GetAssetDetailsRequest object.
+     *
+     * @param title            The title of the asset.
+     * @param cost             The cost of the asset.
+     * @param purchaseDate     The purchase date of the asset.
+     * @param depreciationRate The depreciation rate of the asset.
+     */
+    public GetAssetDetailsRequest(final String title
+            , final BigDecimal cost
+            , final Date purchaseDate
+            , final BigDecimal depreciationRate) {
         this.title = title;
         this.cost = cost;
         this.purchaseDate = purchaseDate;
         this.depreciationRate = depreciationRate;
     }
 
+    /**
+     * Retrieves the title of the asset.
+     *
+     * @return The title of the asset.
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Retrieves the cost of the asset.
+     *
+     * @return The cost of the asset.
+     */
     public BigDecimal getCost() {
         return cost;
     }
 
+    /**
+     * Retrieves the purchase date of the asset.
+     *
+     * @return The purchase date of the asset.
+     */
     public Date getPurchaseDate() {
         return purchaseDate;
     }
 
+    /**
+     * Retrieves the depreciation rate of the asset.
+     *
+     * @return The depreciation rate of the asset.
+     */
     public BigDecimal getDepreciationRate() {
         return depreciationRate;
     }
